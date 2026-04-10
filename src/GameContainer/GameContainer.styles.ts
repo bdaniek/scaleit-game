@@ -9,79 +9,98 @@ const shake = keyframes`
   100% { transform: translateX(0); }
 `;
 
-export const Wrapper = styled('div')<{ isOpened: boolean; hasGameStarted: boolean }>`
-  height: 300px;
-  width: ${({ hasGameStarted }) => (hasGameStarted ? '900px' : '300px')};
+export const Wrapper = styled('div')<{ isOpened: boolean; hasTimerStarted: boolean }>`
+  height: ${({ hasTimerStarted }) => (hasTimerStarted ? '400px' : '300px')};
+  width: ${({ hasTimerStarted }) => (hasTimerStarted ? '1100px' : '300px')};
   border-radius: 12px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 300ms ease;
   font-family: 'DM Sans', sans-serif;
   border: 1px solid #d9d4ef;
+  transition:
+    transform 300ms ease,
+    width 500ms ease,
+    height 500ms ease 500ms;
   transform: ${({ isOpened }) => (isOpened ? 'translateX(-160px)' : 'translateX(0)')};
 `;
 
-export const Title = styled('div')`
-  color: #9b96c0;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 500;
-`;
-
-export const OptionsContainer = styled('div')<{ isOpened: boolean; hasGameStarted: boolean }>`
-  width: 300px;
-  height: 100%;
+export const GameScreen = styled('div')<{ hasTimerStarted: boolean }>`
   position: absolute;
   top: 0;
-  border-radius: 10px;
-  right: ${({ isOpened }) => (isOpened ? '-320px' : '0')};
-  transition: right 300ms ease;
-  z-index: 1;
-  padding: 20px;
-  flex-direction: column;
-  gap: 16px;
-  display: ${({ hasGameStarted }) => (hasGameStarted ? 'none' : 'flex')};
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+  opacity: ${({ hasTimerStarted }) => (hasTimerStarted ? '1' : '0')};
+  transition: all 300ms ease;
+  transition-delay: 1000ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const DifficultyOption = styled('div')<{ isHard?: boolean; isChosen: boolean }>`
-  background: ${({ isChosen }) => (isChosen ? '#f5f3ff' : '#fff')};
-  border: 1px solid ${({ isChosen }) => (isChosen ? '#7c6af5' : '#e3dff5')};
-  border-radius: 12px;
-  padding: 16px 18px;
-  cursor: pointer;
-  transition: all 160ms ease;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: 'DM Sans', sans-serif;
+const rippleOut = keyframes`
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  60%  { opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+`;
 
-  &:hover {
-    border-color: ${({ isHard }) => (isHard ? '#c95f67' : '#2a9d7a')};
-    background: ${({ isHard }) => (isHard ? '#faf0f0' : '#f0faf6')};
+export const RippleRing = styled('div')`
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  border: 2px solid #7c6af5;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ${rippleOut} 0.7s cubic-bezier(0.1, 0.4, 0.3, 1) forwards;
+`;
+
+export const Bubble = styled('div')`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #7c6af5;
+  position: relative;
+  cursor: pointer;
+  transition: all 200ms ease;
+
+  &:active {
+    transform: scale(0.9);
   }
 `;
 
-export const DifficultyName = styled('span')<{ isHard?: boolean }>`
-  font-size: 18px;
-  font-weight: 400;
-  color: ${({ isHard }) => (isHard ? '#c95f67' : '#2a9d7a')};
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  30% {
+    transform: scale(1.35);
+    opacity: 1;
+  }
+
+  60% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 `;
 
-export const DifficultyDesc = styled('span')`
-  font-size: 12px;
-  font-weight: 300;
-  color: #9b96c0;
-  margin-top: 2px;
-  display: block;
-`;
+export const Countdown = styled('div')`
+  font-size: 40px;
+  font-weight: 700;
+  color: black;
 
-export const DifficultyPill = styled('span')<{ isHard?: boolean }>`
-  font-size: 11px;
-  font-weight: 500;
-  padding: 3px 10px;
-  border-radius: 20px;
-  background: ${({ isHard }) => (isHard ? '#fceaea' : '#e0f5ee')};
-  color: ${({ isHard }) => (isHard ? '#c95f67' : '#2a9d7a')};
+  display: inline-block;
+  animation: ${pulse} 250ms cubic-bezier(0.2, 0.9, 0.2, 1);
 `;
