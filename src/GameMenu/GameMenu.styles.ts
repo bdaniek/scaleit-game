@@ -26,10 +26,10 @@ export const GameMenuOptions = styled('div')<{ hasTimerStarted: boolean }>`
     hasTimerStarted ? 'translateY(-1000px)' : 'translateY(0)'};
 `;
 
-export const GameMenuOption = styled('div')`
+export const GameMenuOption = styled('div')<{ hasTimerStarted: boolean }>`
   width: 100%;
   border-radius: 8px;
-  color: #4e4880;
+  color: white;
   font-size: 22px;
   font-weight: 400;
   cursor: pointer;
@@ -42,8 +42,10 @@ export const GameMenuOption = styled('div')`
   transition:
     all 180ms ease,
     transform 180ms ease 300ms;
-
   border: 1px solid #d9d4ef;
+
+  transform: ${({ hasTimerStarted }) =>
+    hasTimerStarted ? 'translateY(-1000px)' : 'translateY(0)'};
 
   &:hover {
     padding-left: 20px;

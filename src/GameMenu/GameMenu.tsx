@@ -14,7 +14,7 @@ const GameMenu = ({ isOpened, handleOpen, hasTimerStarted }: MenuProps) => {
     <Wrapper hasTimerStarted={hasTimerStarted} isOpened={isOpened}>
       <GameMenuOptions hasTimerStarted={hasTimerStarted}>
         {menuOptions.map((option) => (
-          <GameMenuOption key={option} onClick={handleOpen}>
+          <GameMenuOption hasTimerStarted={hasTimerStarted} key={option} onClick={handleOpen}>
             <ArrowSpan>
               <KeyboardArrowRightIcon />
             </ArrowSpan>

@@ -1,8 +1,9 @@
 import GameMenu from '@/GameMenu/GameMenu';
 import { useEffect, useState } from 'react';
-import { Wrapper, Bubble, GameScreen, RippleRing, Countdown } from './GameContainer.styles';
+import { Wrapper } from './GameContainer.styles';
 import { useCountdown } from '@/hooks/useCountdown.tsx';
 import DifficultyContainer from '@/DifficultyContainer/DifficultyContainer.tsx';
+import GamePanel from '@/GamePanel/GamePanel';
 
 const GameContainer = () => {
   // this will change to objects with isOpen property, so Diff, Settings and Credits can open simultaneously
@@ -10,7 +11,7 @@ const GameContainer = () => {
 
   const [hasGameStarted, setHasGameStarted] = useState(false);
   const [hasTimerStarted, setHasTimerStarted] = useState(false);
-  const [rings, setRings] = useState<number[]>([]);
+  const [shapeSize, setShapeSize] = useState(100);
 
   const phase: 'idle' | 'countdown' | 'playing' = !hasTimerStarted
     ? 'idle'
@@ -30,15 +31,10 @@ const GameContainer = () => {
     setIsDifficultyOpened(false);
   };
 
-  const handleBubbleClick = () => {
-    setRings((prev) => [...prev, Date.now()]);
-  };
-
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'Space' && !e.repeat) {
         e.preventDefault();
-        handleBubbleClick();
       }
     };
 
@@ -47,12 +43,16 @@ const GameContainer = () => {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  const removeRing = (id: number) => {
-    setRings((prev) => prev.filter((r) => r !== id));
+  const handleChangeShapeSize = (_: Event, value: number | number[]) => {
+    setShapeSize(value as number);
   };
 
   return (
-    <Wrapper isOpened={isDifficultyOpened} hasTimerStarted={hasTimerStarted}>
+    <Wrapper
+      isOpened={isDifficultyOpened}
+      hasTimerStarted={hasTimerStarted}
+      hasGameStarted={hasGameStarted}
+    >
       <GameMenu
         hasTimerStarted={hasTimerStarted}
         isOpened={isDifficultyOpened}
@@ -63,12 +63,14 @@ const GameContainer = () => {
         isDifficultyOpened={isDifficultyOpened}
         hasTimerStarted={hasTimerStarted}
       />
-      <GameScreen hasTimerStarted={hasTimerStarted}>
-        {phase === 'playing' && <Bubble onClick={handleBubbleClick} />}
-        {phase === 'playing' &&
-          rings.map((id) => <RippleRing key={id} onAnimationEnd={() => removeRing(id)} />)}
-        {countdown && phase === 'countdown' && <Countdown key={countdown}>{countdown}</Countdown>}
-      </GameScreen>
+      <GamePanel
+        shapeSize={shapeSize}
+        handleChangeShapeSize={handleChangeShapeSize}
+        phase={phase}
+        countdown={countdown}
+        hasTimerStarted={hasTimerStarted}
+        hasGameStarted={hasGameStarted}
+      />
     </Wrapper>
   );
 };

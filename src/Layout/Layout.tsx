@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <Wrapper>
-      <Title>unnamed rhythm game</Title>
+      <Title>unnamed scale game</Title>
       <Content>{children}</Content>
       <Footer>Bartosz Daniek</Footer>
     </Wrapper>
