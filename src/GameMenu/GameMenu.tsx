@@ -1,20 +1,26 @@
 import { Wrapper, GameMenuOptions, GameMenuOption, ArrowSpan } from './GameMenu.styles.ts';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 interface MenuProps {
   isOpened: boolean;
   handleOpen: () => void;
+  hasTimerStarted: boolean;
 }
 
-const GameMenu = ({ isOpened, handleOpen }: MenuProps) => {
+const menuOptions = ['Start', 'Settings', 'Credits'];
+
+const GameMenu = ({ isOpened, handleOpen, hasTimerStarted }: MenuProps) => {
   return (
-    <Wrapper isOpened={isOpened}>
-      <GameMenuOptions>
-        <GameMenuOption onClick={handleOpen}>
-          <ArrowSpan>
-            <FiberManualRecordIcon fontSize="small" />
-          </ArrowSpan>
-          Start
-        </GameMenuOption>
+    <Wrapper hasTimerStarted={hasTimerStarted} isOpened={isOpened}>
+      <GameMenuOptions hasTimerStarted={hasTimerStarted}>
+        {menuOptions.map((option) => (
+          <GameMenuOption hasTimerStarted={hasTimerStarted} key={option} onClick={handleOpen}>
+            <ArrowSpan>
+              <KeyboardArrowRightIcon />
+            </ArrowSpan>
+            {option}
+          </GameMenuOption>
+        ))}
       </GameMenuOptions>
     </Wrapper>
   );
