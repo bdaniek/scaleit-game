@@ -1,5 +1,5 @@
 import { styled } from '@mui/material';
-export const Wrapper = styled('div')<{ isOpened: boolean; hasTimerStarted: boolean }>`
+export const Wrapper = styled('div')<{ isOpened: boolean; hasGameStarted: boolean }>`
   width: 360px;
   height: 100%;
   position: relative;
@@ -11,22 +11,21 @@ export const Wrapper = styled('div')<{ isOpened: boolean; hasTimerStarted: boole
   border-radius: 12px;
   font-family: 'DM Sans', sans-serif;
   background: #7c6af5;
-  opacity: ${({ hasTimerStarted }) => (hasTimerStarted ? '0' : '1')};
-  transform: translateY(${({ hasTimerStarted }) => (hasTimerStarted ? '1000px' : '0')});
+  opacity: ${({ hasGameStarted }) => (hasGameStarted ? '0' : '1')};
+  transform: translateY(${({ hasGameStarted }) => (hasGameStarted ? '1000px' : '0')});
 `;
 
-export const GameMenuOptions = styled('div')<{ hasTimerStarted: boolean }>`
+export const GameMenuOptions = styled('div')<{ hasGameStarted: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
   padding: 0;
 
-  transform: ${({ hasTimerStarted }) =>
-    hasTimerStarted ? 'translateY(-1000px)' : 'translateY(0)'};
+  transform: ${({ hasGameStarted }) => (hasGameStarted ? 'translateY(-1000px)' : 'translateY(0)')};
 `;
 
-export const GameMenuOption = styled('div')<{ hasTimerStarted: boolean }>`
+export const GameMenuOption = styled('div')<{ hasGameStarted: boolean }>`
   width: 100%;
   border-radius: 8px;
   color: white;
@@ -44,8 +43,7 @@ export const GameMenuOption = styled('div')<{ hasTimerStarted: boolean }>`
     transform 180ms ease 300ms;
   border: 1px solid #d9d4ef;
 
-  transform: ${({ hasTimerStarted }) =>
-    hasTimerStarted ? 'translateY(-1000px)' : 'translateY(0)'};
+  transform: ${({ hasGameStarted }) => (hasGameStarted ? 'translateY(-1000px)' : 'translateY(0)')};
 
   &:hover {
     padding-left: 20px;

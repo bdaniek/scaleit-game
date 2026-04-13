@@ -8,18 +8,18 @@ import {
 } from '@/DifficultyContainer/DifficultyContainer.styles.ts';
 
 interface DifficultyContainerProps {
-  hasTimerStarted: boolean;
   isDifficultyOpened: boolean;
   handleStartGame: () => void;
+  hasGameStarted: boolean;
 }
 
 const DifficultyContainer = ({
-  hasTimerStarted,
   isDifficultyOpened,
   handleStartGame,
+  hasGameStarted,
 }: DifficultyContainerProps) => {
   return (
-    <OptionsContainer hasTimerStarted={hasTimerStarted} isOpened={isDifficultyOpened}>
+    <OptionsContainer hasGameStarted={hasGameStarted} isOpened={isDifficultyOpened}>
       <Title>Difficulty</Title>
       <DifficultyOption isChosen onClick={handleStartGame}>
         <div>

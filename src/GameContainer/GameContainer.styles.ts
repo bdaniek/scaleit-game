@@ -2,18 +2,17 @@ import { styled, keyframes } from '@mui/material';
 
 export const Wrapper = styled('div')<{
   isOpened: boolean;
-  hasTimerStarted: boolean;
   hasGameStarted: boolean;
 }>`
-  height: ${({ hasTimerStarted }) => (hasTimerStarted ? '400px' : '300px')};
-  width: ${({ hasTimerStarted }) => (hasTimerStarted ? '500px' : '300px')};
+  height: ${({ hasGameStarted }) => (hasGameStarted ? '400px' : '300px')};
+  width: ${({ hasGameStarted }) => (hasGameStarted ? '500px' : '300px')};
   border-radius: 12px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'DM Sans', sans-serif;
-  border: ${({ hasTimerStarted }) => (hasTimerStarted ? 'none' : '1px solid #d9d4ef')};
+  border: ${({ hasGameStarted }) => (hasGameStarted ? 'none' : '1px solid #d9d4ef')};
   transition:
     transform 300ms ease,
     width 500ms ease,

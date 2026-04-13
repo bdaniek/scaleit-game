@@ -1,33 +1,44 @@
 import GameMenu from '@/GameMenu/GameMenu';
 import { useEffect, useState } from 'react';
 import { Wrapper } from './GameContainer.styles';
-import { useCountdown } from '@/hooks/useCountdown.tsx';
-import DifficultyContainer from '@/DifficultyContainer/DifficultyContainer.tsx';
+import { useCountdown } from '@/hooks/useCountdown';
+import DifficultyContainer from '@/DifficultyContainer/DifficultyContainer';
 import GamePanel from '@/GamePanel/GamePanel';
+import { useGame } from '@/hooks/useGame';
+import RoundWatcher from '@/RoundWatcher/RoundWatcher';
 
 const GameContainer = () => {
-  // this will change to objects with isOpen property, so Diff, Settings and Credits can open simultaneously
   const [isDifficultyOpened, setIsDifficultyOpened] = useState(false);
 
-  const [hasGameStarted, setHasGameStarted] = useState(false);
-  const [hasTimerStarted, setHasTimerStarted] = useState(false);
-  const [shapeSize, setShapeSize] = useState(100);
+  const {
+    phase,
+    round,
+    targetSize,
+    shapeSize,
+    results,
+    setShapeSize,
+    startGame,
+    submitGuess,
+    startCountdown,
+  } = useGame();
 
-  const phase: 'idle' | 'countdown' | 'playing' = !hasTimerStarted
-    ? 'idle'
-    : !hasGameStarted
-      ? 'countdown'
-      : 'playing';
+  const hasGameStarted = ['countdown', 'memorize', 'recall', 'result', 'finished'].includes(phase);
+
+  const handleChangeShapeSize = (_: Event, value: number | number[]) => {
+    setShapeSize(value as number);
+  };
 
   const countdown = useCountdown({
-    start: hasTimerStarted,
+    start: phase === 'countdown',
     from: 3,
     delay: 1000,
-    onFinish: () => setHasGameStarted(true),
+    onFinish: () => {
+      startGame();
+    },
   });
 
   const handleStartGame = () => {
-    setHasTimerStarted(true);
+    startCountdown();
     setIsDifficultyOpened(false);
   };
 
@@ -39,38 +50,33 @@ const GameContainer = () => {
     };
 
     window.addEventListener('keydown', onKeyDown);
-
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  const handleChangeShapeSize = (_: Event, value: number | number[]) => {
-    setShapeSize(value as number);
-  };
-
   return (
-    <Wrapper
-      isOpened={isDifficultyOpened}
-      hasTimerStarted={hasTimerStarted}
-      hasGameStarted={hasGameStarted}
-    >
+    <Wrapper isOpened={isDifficultyOpened} hasGameStarted={hasGameStarted}>
       <GameMenu
-        hasTimerStarted={hasTimerStarted}
+        hasGameStarted={hasGameStarted}
         isOpened={isDifficultyOpened}
         handleOpen={() => setIsDifficultyOpened((prev) => !prev)}
       />
       <DifficultyContainer
         handleStartGame={handleStartGame}
         isDifficultyOpened={isDifficultyOpened}
-        hasTimerStarted={hasTimerStarted}
+        hasGameStarted={hasGameStarted}
       />
       <GamePanel
         shapeSize={shapeSize}
         handleChangeShapeSize={handleChangeShapeSize}
         phase={phase}
+        targetSize={targetSize}
+        submitGuess={submitGuess}
         countdown={countdown}
-        hasTimerStarted={hasTimerStarted}
         hasGameStarted={hasGameStarted}
+        round={round}
+        results={results}
       />
+      <RoundWatcher hasGameStarted={hasGameStarted} round={round} />
     </Wrapper>
   );
 };

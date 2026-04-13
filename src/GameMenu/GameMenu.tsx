@@ -4,17 +4,17 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 interface MenuProps {
   isOpened: boolean;
   handleOpen: () => void;
-  hasTimerStarted: boolean;
+  hasGameStarted: boolean;
 }
 
 const menuOptions = ['Start', 'Settings', 'Credits'];
 
-const GameMenu = ({ isOpened, handleOpen, hasTimerStarted }: MenuProps) => {
+const GameMenu = ({ isOpened, handleOpen, hasGameStarted }: MenuProps) => {
   return (
-    <Wrapper hasTimerStarted={hasTimerStarted} isOpened={isOpened}>
-      <GameMenuOptions hasTimerStarted={hasTimerStarted}>
+    <Wrapper hasGameStarted={hasGameStarted} isOpened={isOpened}>
+      <GameMenuOptions hasGameStarted={hasGameStarted}>
         {menuOptions.map((option) => (
-          <GameMenuOption hasTimerStarted={hasTimerStarted} key={option} onClick={handleOpen}>
+          <GameMenuOption hasGameStarted={hasGameStarted} key={option} onClick={handleOpen}>
             <ArrowSpan>
               <KeyboardArrowRightIcon />
             </ArrowSpan>

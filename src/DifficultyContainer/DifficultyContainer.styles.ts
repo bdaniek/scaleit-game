@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
 
-export const OptionsContainer = styled('div')<{ isOpened: boolean; hasTimerStarted: boolean }>`
+export const OptionsContainer = styled('div')<{ isOpened: boolean; hasGameStarted: boolean }>`
   width: 300px;
   height: 100%;
   position: absolute;
@@ -13,7 +13,7 @@ export const OptionsContainer = styled('div')<{ isOpened: boolean; hasTimerStart
   flex-direction: column;
   gap: 16px;
   border: 1px solid #d9d4ef;
-  display: ${({ hasTimerStarted }) => (hasTimerStarted ? 'none' : 'flex')};
+  display: ${({ hasGameStarted }) => (hasGameStarted ? 'none' : 'flex')};
 `;
 
 export const DifficultyOption = styled('div')<{ isHard?: boolean; isChosen: boolean }>`

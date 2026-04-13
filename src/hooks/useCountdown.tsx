@@ -5,37 +5,74 @@ interface CountdownProps {
   from?: number;
   delay?: number;
   onFinish?: () => void;
+  decimals?: boolean;
+  round?: number;
 }
 
-export const useCountdown = ({ start, from = 3, delay = 1000, onFinish }: CountdownProps) => {
+export const useCountdown = ({
+  start,
+  from = 3,
+  delay = 0,
+  onFinish,
+  decimals = false,
+  round,
+}: CountdownProps) => {
   const [value, setValue] = useState<number | null>(null);
-  const startedRef = useRef(false);
+  const prevRoundRef = useRef<number | undefined>(undefined);
+  const prevStartRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (!start || startedRef.current) return;
+    const roundChanged = round !== prevRoundRef.current;
+    const startedFresh = start && !prevStartRef.current;
 
-    startedRef.current = true;
+    prevRoundRef.current = round;
+    prevStartRef.current = start;
+
+    if (!start && !roundChanged) return;
+    if (!startedFresh && !roundChanged) return;
 
     const timeout = setTimeout(() => {
       setValue(from);
 
-      const interval = setInterval(() => {
-        setValue((prev) => {
-          if (typeof prev !== 'number') return prev;
+      if (decimals) {
+        const interval = setInterval(() => {
+          setValue((prev) => {
+            if (typeof prev !== 'number') return prev;
 
-          if (prev <= 1) {
-            clearInterval(interval);
-            onFinish?.();
-            return null;
-          }
+            const next = Math.round((prev - 0.01) * 100) / 100;
 
-          return prev - 1;
-        });
-      }, 1000);
+            if (next <= 0) {
+              clearInterval(interval);
+              onFinish?.();
+              return null;
+            }
+
+            return next;
+          });
+        }, 10);
+
+        return () => clearInterval(interval);
+      } else {
+        const interval = setInterval(() => {
+          setValue((prev) => {
+            if (typeof prev !== 'number') return prev;
+
+            if (prev <= 1) {
+              clearInterval(interval);
+              onFinish?.();
+              return null;
+            }
+
+            return prev - 1;
+          });
+        }, 1000);
+
+        return () => clearInterval(interval);
+      }
     }, delay);
 
     return () => clearTimeout(timeout);
-  }, [start, from, delay, onFinish]);
+  }, [start, round]);
 
   return value;
 };
