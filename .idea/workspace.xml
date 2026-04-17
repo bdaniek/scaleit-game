@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88656682-7f0d-4f4a-bf27-4932ff8dad50" name="Changes" comment="updated UI, animations, game logic, result screen, daily game, leaderboard, backend">
-      <change beforePath="$PROJECT_DIR$/frontend/src/GameContainer/GameContainer.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/GameContainer/GameContainer.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/GameContainer/GameContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/GameContainer/GameContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/GamePanel/GamePanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/GamePanel/GamePanel.tsx" afterDir="false" />
+    <list default="true" id="88656682-7f0d-4f4a-bf27-4932ff8dad50" name="Changes" comment="small code cleanup">
+      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,18 +20,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "bdaniek"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;bdaniek&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/bdaniek/rhythm-game.git",
-    "accountId": "3e14fe98-0635-4581-abb6-33d9fb8172ee"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/bdaniek/rhythm-game.git&quot;,
+    &quot;accountId&quot;: &quot;3e14fe98-0635-4581-abb6-33d9fb8172ee&quot;
   }
-}]]></component>
+}</component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -43,6 +41,9 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/frontend/package.json" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -51,25 +52,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/bartosz/Desktop/scaleit-game",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/bartosz/Desktop/scaleit-game/frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/Users/bartosz/Desktop/scaleit-game/backend/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/bartosz/Desktop/scaleit-game&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/bartosz/Desktop/scaleit-game/frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/bartosz/Desktop/scaleit-game/backend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -97,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1775677641068</updated>
       <workItem from="1775677642368" duration="69922000" />
-      <workItem from="1776198714320" duration="14145000" />
+      <workItem from="1776198714320" duration="14330000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -139,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776466998437</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="small code cleanup">
+      <option name="closed" value="true" />
+      <created>1776467183666</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1776467183666</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +160,7 @@
     <MESSAGE value="major changes" />
     <MESSAGE value="added working game logic" />
     <MESSAGE value="updated UI, animations, game logic, result screen, daily game, leaderboard, backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated UI, animations, game logic, result screen, daily game, leaderboard, backend" />
+    <MESSAGE value="small code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="small code cleanup" />
   </component>
 </project>
