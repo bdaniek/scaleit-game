@@ -1,59 +1,14 @@
 import GameMenu from '@/GameMenu/GameMenu';
 import { useEffect, useRef, useState } from 'react';
-import { Wrapper } from '@/GameContainer/GameContainer.styles';
+import { Wrapper, Overlay, OverlayButton, OverlayTitle, OverlayText} from '@/GameContainer/GameContainer.styles';
 import { useCountdown } from '@/hooks/useCountdown';
 import GameMode from '@/DifficultyContainer/GameMode.tsx';
 import GamePanel from '@/GamePanel/GamePanel';
 import { useGame } from '@/hooks/useGame';
 import { useDailyChallenge } from '@/hooks/useDailyChallenge';
 import RoundWatcher from '@/RoundWatcher/RoundWatcher';
-import { styled } from '@mui/material';
 
 type GameMode = 'normal' | 'daily' | null;
-
-// ─── Overlay for daily-specific states ──────────────────────────────────────
-
-const Overlay = styled('div')`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: #f0eef8;
-  border-radius: 12px;
-  z-index: 102;
-  font-family: 'DM Sans', sans-serif;
-  padding: 24px;
-  text-align: center;
-`;
-
-const OverlayTitle = styled('div')`
-  font-size: 18px;
-  font-weight: 700;
-  color: #4e4880;
-`;
-
-const OverlayText = styled('div')`
-  font-size: 14px;
-  color: #9b96c0;
-  line-height: 1.5;
-`;
-
-const OverlayButton = styled('button')`
-  margin-top: 8px;
-  padding: 10px 24px;
-  border-radius: 8px;
-  border: 1px solid #7c6af5;
-  background: transparent;
-  color: #7c6af5;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 160ms ease;
-  &:hover { background: #7c6af5; color: #fff; }
-`;
 
 // ─── Component ───────────────────────────────────────────────────────────────
 

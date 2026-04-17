@@ -43,7 +43,6 @@ interface GameScreenProps {
   round: number;
   results: RoundResult[];
   handleFinishGame: () => void;
-  // Daily-specific
   isDaily: boolean;
   dailyStatus: DailyStatus;
   submitResult: SubmitScoreResponse | null;
