@@ -27,7 +27,7 @@ export function generateDailyTargets(dateStr: string, count = 5): number[] {
   return Array.from({ length: count }, () => Math.round(rand() * 180 + 20));
 }
 
-/** Returns today's date as "YYYY-MM-DD" in UTC */
+/** Returns today's date as "YYYY-MM-DD" in Europe/Warsaw time (resets at midnight Polish time) */
 export function todayUTC(): string {
-  return new Date().toISOString().slice(0, 10);
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Warsaw' }).format(new Date());
 }
