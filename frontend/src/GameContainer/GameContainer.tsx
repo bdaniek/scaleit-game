@@ -171,7 +171,7 @@ const GameContainer = () => {
                       }}
                     >
                       <span>#{i + 1} {s.playerName}</span>
-                      <span style={{ fontWeight: 600 }}>{s.score.toFixed(1)}</span>
+                      <span style={{ fontWeight: 600 }}>{s.score.toFixed(1)} / 100</span>
                     </div>
                   ))}
                 </div>

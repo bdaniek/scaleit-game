@@ -209,7 +209,7 @@ const GamePanel = ({
         <SliderWrapper isPlaying={['idle', 'countdown', 'memorize', 'finished'].includes(phase)}>
           <Slider
             orientation="vertical"
-            min={30}
+            min={10}
             max={300}
             defaultValue={30}
             sx={{ height: '90%', color: '#7c6af5' }}

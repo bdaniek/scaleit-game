@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 export const DEFAULT_ROUNDS = 5;
-export const MEMORIZE_DURATION = 1000;
-const RESULT_DURATION = 1500;
+export const MEMORIZE_DURATION = 2000;
+const RESULT_DURATION = 2000;
 const MIN_SIZE = 30;
 const MAX_SIZE = 300;
 
