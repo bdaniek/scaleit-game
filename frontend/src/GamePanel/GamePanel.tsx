@@ -1,10 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Wrapper,
   GameScreen,
-  Bubble,
-  TargetRing,
-  GuessBubble,
   ResultLegend,
   LegendDot,
   ResultAccuracy,
@@ -26,6 +23,8 @@ import {
   LeaderboardList,
   LeaderboardItem,
 } from '@/GamePanel/GamePanel.styles.ts';
+import GameShape from '@/GamePanel/GameShape';
+import type { ShapeType } from '@/GamePanel/shapes';
 import Slider from '@mui/material/Slider';
 import { useCountdown } from '@/hooks/useCountdown.tsx';
 import { MEMORIZE_DURATION, type RoundResult } from '@/hooks/useGame.tsx';
@@ -43,6 +42,9 @@ interface GameScreenProps {
   round: number;
   results: RoundResult[];
   handleFinishGame: () => void;
+  shape: ShapeType;
+  color: string;
+  // Daily-specific
   isDaily: boolean;
   dailyStatus: DailyStatus;
   submitResult: SubmitScoreResponse | null;
@@ -61,6 +63,8 @@ const GamePanel = ({
   round,
   results,
   handleFinishGame,
+  shape,
+  color,
   isDaily,
   dailyStatus,
   submitResult,
@@ -97,7 +101,6 @@ const GamePanel = ({
   };
 
   const isFinished = phase === 'finished';
-  // After playing daily, status is 'ready' (set when challenge loaded). 'error' = failed submit, allow retry.
   const showShareForm = isDaily && isFinished && (dailyStatus === 'ready' || dailyStatus === 'error');
   const showSubmitting = isDaily && isFinished && dailyStatus === 'submitting';
   const showSubmitted = isDaily && isFinished && dailyStatus === 'submitted';
@@ -108,19 +111,25 @@ const GamePanel = ({
         <GameScreen>
           {countdown && phase === 'countdown' && <Countdown key={countdown}>{countdown}</Countdown>}
 
-          {phase === 'memorize' && <Bubble shapeSize={targetSize} />}
-          {phase === 'recall' && <Bubble shapeSize={shapeSize} />}
+          {phase === 'memorize' && (
+            <GameShape shape={shape} size={targetSize} color={color} variant="bubble" />
+          )}
+
+          {phase === 'recall' && (
+            <GameShape shape={shape} size={shapeSize} color={color} variant="bubble" />
+          )}
+
           {phase === 'result' && (() => {
             const roundAccuracy = Math.max(0, (1 - Math.abs(targetSize - shapeSize) / targetSize) * 100);
             const isOvershot = shapeSize > targetSize;
             return (
               <>
                 <ResultAccuracy>{roundAccuracy.toFixed(1)}%</ResultAccuracy>
-                <GuessBubble shapeSize={shapeSize} isOvershot={isOvershot} />
-                <TargetRing shapeSize={targetSize} />
+                <GameShape shape={shape} size={shapeSize} color={color} variant="guess" isOvershot={isOvershot} />
+                <GameShape shape={shape} size={targetSize} color={color} variant="ring" />
                 <ResultLegend>
                   <LegendDot dashed>target</LegendDot>
-                  <LegendDot >yours</LegendDot>
+                  <LegendDot style={{ '--dot-color': isOvershot ? '#f87171' : color } as React.CSSProperties}>yours</LegendDot>
                 </ResultLegend>
               </>
             );

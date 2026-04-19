@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { randomShape, randomColor } from '../GamePanel/shapes';
+import type { ShapeType } from '../GamePanel/shapes';
 
 export const DEFAULT_ROUNDS = 5;
 export const MEMORIZE_DURATION = 2000;
@@ -23,6 +25,8 @@ export const useGame = () => {
   const [targetSize, setTargetSize] = useState(0);
   const [shapeSize, setShapeSize] = useState(100);
   const [results, setResults] = useState<RoundResult[]>([]);
+  const [shape, setShape] = useState<ShapeType>('circle');
+  const [color, setColor] = useState('#7c6af5');
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Targets for the current game session (undefined = use random)
@@ -57,6 +61,8 @@ export const useGame = () => {
     setTotalRounds(rounds);
     setRound(1);
     setResults([]);
+    setShape(randomShape());
+    setColor(randomColor());
     startRound(1);
   };
 
@@ -99,6 +105,8 @@ export const useGame = () => {
     totalRounds,
     targetSize,
     shapeSize,
+    shape,
+    color,
     results,
     setShapeSize,
     startGame,

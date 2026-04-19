@@ -46,68 +46,7 @@ export const GameScreen = styled('div')`
   position: relative;
 `;
 
-// ─── Shared animations ────────────────────────────────────────────────────────
-
-const scaleIn = keyframes`
-  from { transform: scale(0.8); }
-  to   { transform: scale(1); }
-`;
-
-const fadeIn = keyframes`
-  from { opacity: 0.5; }
-  to   { opacity: 1; }
-`;
-
-const spin = keyframes`
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-`;
-
-// ─── Memorize / recall bubble ─────────────────────────────────────────────────
-
-export const Bubble = styled('div')<{ shapeSize: number }>`
-  width: ${({ shapeSize }) => shapeSize}px;
-  height: ${({ shapeSize }) => shapeSize}px;
-  border-radius: 50%;
-  background: #7c6af5;
-  position: absolute;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  animation: ${scaleIn} 300ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
-
-  &:active {
-    transform: scale(0.9);
-  }
-`;
-
-// ─── Result phase: target ring + guess bubble ─────────────────────────────────
-
-export const TargetRing = styled('div')<{ shapeSize: number }>`
-  width: ${({ shapeSize }) => shapeSize}px;
-  height: ${({ shapeSize }) => shapeSize}px;
-  border-radius: 50%;
-  border: 2.5px dashed rgba(255, 255, 255, 0.9);
-  filter: drop-shadow(0 0 3px rgba(78, 72, 128, 0.6));
-  position: absolute;
-  z-index: 2;
-  pointer-events: none;
-  /* fadeIn first, then hand off to spin — no transform conflict */
-  animation: ${fadeIn} 250ms ease both, ${spin} 5s linear 250ms infinite;
-`;
-
-export const GuessBubble = styled('div')<{ shapeSize: number; isOvershot: boolean }>`
-  width: ${({ shapeSize }) => shapeSize}px;
-  height: ${({ shapeSize }) => shapeSize}px;
-  border-radius: 50%;
-  background: #7c6af5;
-  opacity: 0.75;
-  position: absolute;
-  pointer-events: none;
-  animation: ${scaleIn} 320ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
-`;
+// ─── Result phase overlays ────────────────────────────────────────────────────
 
 export const ResultLegend = styled('div')`
   position: absolute;
@@ -130,10 +69,9 @@ export const LegendDot = styled('span')<{ dashed?: boolean }>`
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: ${({ dashed }) =>
-      dashed ? 'transparent' : '#7c6af5'};
+    background: ${({ dashed }) => (dashed ? 'transparent' : 'var(--dot-color, #7c6af5)')};
     opacity: ${({ dashed }) => (dashed ? 1 : 0.75)};
-    border: ${({ dashed }) => (dashed ? '1.5px dashed white' : 'none')};
+    border: ${({ dashed }) => (dashed ? '1.5px dashed rgba(78,72,128,0.6)' : 'none')};
   }
 `;
 
@@ -147,22 +85,21 @@ export const ResultAccuracy = styled('div')`
   opacity: 0.8;
 `;
 
+// ─── Countdown ────────────────────────────────────────────────────────────────
+
 const pulse = keyframes`
   0% {
     transform: scale(1);
     opacity: 1;
   }
-
   30% {
     transform: scale(1.35);
     opacity: 1;
   }
-
   60% {
     transform: scale(0.95);
     opacity: 1;
   }
-
   100% {
     transform: scale(1);
     opacity: 1;
@@ -173,10 +110,11 @@ export const Countdown = styled('div')`
   font-size: 40px;
   font-weight: 700;
   color: black;
-
   display: inline-block;
   animation: ${pulse} 250ms cubic-bezier(0.2, 0.9, 0.2, 1);
 `;
+
+// ─── Controls ─────────────────────────────────────────────────────────────────
 
 export const SubmitButton = styled('div')`
   position: absolute;
@@ -212,6 +150,8 @@ export const Counter = styled('div')`
   z-index: 99;
   font-family: 'Courier New', Courier, monospace;
 `;
+
+// ─── Results screen ───────────────────────────────────────────────────────────
 
 export const ResultScreen = styled('div')`
   width: 100%;
@@ -258,7 +198,7 @@ export const FinishButton = styled('div')`
   }
 `;
 
-// ─── Daily share UI ──────────────────────────────────────────────────────────
+// ─── Daily share UI ───────────────────────────────────────────────────────────
 
 export const ShareForm = styled('div')`
   display: flex;
