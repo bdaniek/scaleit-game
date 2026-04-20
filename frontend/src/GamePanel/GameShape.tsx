@@ -54,7 +54,7 @@ interface ShapeSvgProps {
   isOvershot?: boolean;
 }
 
-const ShapeSvg = ({ shape, color, variant, isOvershot }: ShapeSvgProps) => {
+const ShapeSvg = ({ shape, color, variant }: ShapeSvgProps) => {
   const points = getShapePoints(shape);
   const isCircle = shape === 'circle';
 

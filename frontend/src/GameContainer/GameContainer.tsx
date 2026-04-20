@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSetThemeColor } from '@/context/gameTheme';
 import GameMenu from '@/GameMenu/GameMenu';
 import { Wrapper, Overlay, OverlayButton, OverlayTitle, OverlayText} from '@/GameContainer/GameContainer.styles';
