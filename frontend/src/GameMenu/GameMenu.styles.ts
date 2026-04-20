@@ -19,7 +19,7 @@ export const Wrapper = styled('div')<{
   padding: 28px 24px;
   border-radius: 10px;
   font-family: 'DM Sans', sans-serif;
-  background: #7c6af5;
+  background: ${({ theme }) => theme.palette.primary.main};
   opacity: ${({ hasGameStarted }) => (hasGameStarted ? '0' : '1')};
   pointer-events: ${({ hasGameStarted }) => (hasGameStarted ? 'none' : 'auto')};
   transition:
@@ -95,9 +95,9 @@ export const PlayButton = styled('button')`
   width: 100%;
   padding: 14px;
   border-radius: 10px;
-  border: 1px solid #4e4880;
+  border: 1px solid ${({ theme }) => theme.palette.primary.main};
   background: #fff;
-  color: #7c6af5;
+  color: ${({ theme }) => theme.palette.primary.main};
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
   font-weight: 600;

@@ -1,5 +1,6 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { useSetThemeColor } from '@/context/gameTheme';
 import GameMenu from '@/GameMenu/GameMenu';
-import { useEffect, useRef, useState } from 'react';
 import { Wrapper, Overlay, OverlayButton, OverlayTitle, OverlayText} from '@/GameContainer/GameContainer.styles';
 import { useCountdown } from '@/hooks/useCountdown';
 import GameMode from '@/DifficultyContainer/GameMode.tsx';
@@ -101,6 +102,12 @@ const GameContainer = () => {
   const handleShareScore = (playerName: string) => {
     submitScore(finalScore, playerName);
   };
+
+  // ── Sync game color into MUI theme ───────────────────────────────────────
+  const setThemeColor = useSetThemeColor();
+  useEffect(() => {
+    setThemeColor(color);
+  }, [color, setThemeColor]);
 
   // ── Space bar guard ───────────────────────────────────────────────────────
   useEffect(() => {

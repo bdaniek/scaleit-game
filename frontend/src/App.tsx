@@ -1,17 +1,39 @@
-import { CssBaseline } from '@mui/material';
+import { useState, useMemo } from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { createTheme, lighten } from '@mui/material/styles';
 import { createGlobalStyle } from 'styled-components';
 import Layout from '@/Layout/Layout.tsx';
 import GameContainer from '@/GameContainer/GameContainer.tsx';
+import { ThemeColorContext } from '@/context/gameTheme';
+import { randomColor } from '@/GamePanel/shapes';
 
 function App() {
+  const [themeColor, setThemeColor] = useState(randomColor);
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          primary: {
+            main: themeColor,
+            light: lighten(themeColor, 0.65),
+            dark: themeColor,
+          },
+        },
+      }),
+    [themeColor],
+  );
+
   return (
-    <>
-      <CssBaseline />
-      <GlobalStyle />
-      <Layout>
-        <GameContainer></GameContainer>
-      </Layout>
-    </>
+    <ThemeColorContext.Provider value={setThemeColor}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <GlobalStyle />
+        <Layout>
+          <GameContainer />
+        </Layout>
+      </ThemeProvider>
+    </ThemeColorContext.Provider>
   );
 }
 

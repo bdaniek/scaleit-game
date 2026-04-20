@@ -58,14 +58,7 @@ const ShapeSvg = ({ shape, color, variant, isOvershot }: ShapeSvgProps) => {
   const points = getShapePoints(shape);
   const isCircle = shape === 'circle';
 
-  const fill =
-    variant === 'ring'
-      ? 'none'
-      : variant === 'guess'
-      ? isOvershot
-        ? '#f87171'
-        : color
-      : color;
+  const fill = variant === 'ring' ? 'none' : color;
 
   const fillOpacity = variant === 'guess' ? 0.75 : 1;
   const stroke = variant === 'ring' ? 'rgba(255,255,255,0.9)' : 'none';

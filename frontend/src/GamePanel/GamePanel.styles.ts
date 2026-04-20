@@ -80,7 +80,7 @@ export const ResultAccuracy = styled('div')`
   top: 14px;
   font-size: 13px;
   font-weight: 600;
-  color: #7c6af5;
+  color: ${({ theme }) => theme.palette.primary.main};
   font-family: 'DM Sans', sans-serif;
   opacity: 0.8;
 `;
@@ -126,13 +126,13 @@ export const SubmitButton = styled('div')`
   align-items: center;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  border: 1px solid #4e4880;
-  color: #4e4880;
+  border: 1px solid ${({ theme }) => theme.palette.primary.main};
+  color: ${({ theme }) => theme.palette.primary.main};
   cursor: pointer;
   transition: all 200ms ease;
 
   &:hover {
-    background: #4e4880;
+    background: ${({ theme }) => theme.palette.primary.main};
     color: #fff;
     letter-spacing: 1px;
   }
@@ -187,13 +187,13 @@ export const FinishButton = styled('div')`
   align-items: center;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  border: 1px solid #4e4880;
-  color: #4e4880;
+  border: 1px solid ${({ theme }) => theme.palette.primary.main};
+  color: ${({ theme }) => theme.palette.primary.main};
   cursor: pointer;
   transition: all 200ms ease;
 
   &:hover {
-    background: #4e4880;
+    background: ${({ theme }) => theme.palette.primary.main};
     color: #fff;
   }
 `;
@@ -223,7 +223,7 @@ export const ShareInput = styled('input')`
   text-align: center;
 
   &:focus {
-    border-color: #7c6af5;
+    border-color: ${({ theme }) => theme.palette.primary.main};
   }
 
   &::placeholder {
@@ -234,16 +234,16 @@ export const ShareInput = styled('input')`
 export const ShareButton = styled('button')<{ disabled?: boolean }>`
   padding: 8px 20px;
   border-radius: 8px;
-  border: 1px solid #7c6af5;
-  background: ${({ disabled }) => (disabled ? '#e3dff5' : 'transparent')};
-  color: ${({ disabled }) => (disabled ? '#b0aad8' : '#7c6af5')};
+  border: 1px solid ${({ theme }) => theme.palette.primary.main};
+  background: ${({ disabled }) => (disabled ? 'rgba(0,0,0,0.06)' : 'transparent')};
+  color: ${({ disabled, theme }) => (disabled ? '#b0aad8' : theme.palette.primary.main)};
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   transition: all 160ms ease;
 
   &:hover {
-    background: ${({ disabled }) => (disabled ? '#e3dff5' : '#7c6af5')};
+    background: ${({ disabled, theme }) => (disabled ? 'rgba(0,0,0,0.06)' : theme.palette.primary.main)};
     color: ${({ disabled }) => (disabled ? '#b0aad8' : '#fff')};
   }
 `;
@@ -260,7 +260,7 @@ export const ShareCard = styled('div')`
 export const ShareRank = styled('div')`
   font-size: 16px;
   font-weight: 700;
-  color: #7c6af5;
+  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const ShareCopyButton = styled('button')`
@@ -275,8 +275,8 @@ export const ShareCopyButton = styled('button')`
   transition: all 160ms ease;
 
   &:hover {
-    border-color: #7c6af5;
-    color: #7c6af5;
+    border-color: ${({ theme }) => theme.palette.primary.main};
+    color: ${({ theme }) => theme.palette.primary.main};
   }
 `;
 
@@ -292,6 +292,6 @@ export const LeaderboardItem = styled('div')<{ isMe?: boolean }>`
   font-size: 12px;
   padding: 3px 0;
   border-bottom: 1px solid #e3dff5;
-  color: ${({ isMe }) => (isMe ? '#7c6af5' : '#4e4880')};
+  color: ${({ isMe, theme }) => (isMe ? theme.palette.primary.main : '#4e4880')};
   font-weight: ${({ isMe }) => (isMe ? '600' : '400')};
 `;

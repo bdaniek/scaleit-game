@@ -8,11 +8,12 @@ export const Wrapper = styled('div')`
 `;
 
 export const Title = styled('div')`
-  color: #9b96c0;
+  color: ${({ theme }) => theme.palette.primary.light};
   padding: 10px 30px;
   font-size: 30px;
   font-weight: 700;
   position: absolute;
+  transition: color 300ms ease;
 `;
 
 export const Content = styled('div')`

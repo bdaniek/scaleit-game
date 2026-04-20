@@ -25,8 +25,8 @@ export const useGame = () => {
   const [targetSize, setTargetSize] = useState(0);
   const [shapeSize, setShapeSize] = useState(100);
   const [results, setResults] = useState<RoundResult[]>([]);
-  const [shape, setShape] = useState<ShapeType>('circle');
-  const [color, setColor] = useState('#7c6af5');
+  const [shape, setShape] = useState<ShapeType>(randomShape);
+  const [color, setColor] = useState(randomColor);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Targets for the current game session (undefined = use random)
@@ -42,6 +42,8 @@ export const useGame = () => {
       : randomSize();
     setTargetSize(size);
     setShapeSize(randomSize());
+    setShape(randomShape());
+    setColor(randomColor());
     setPhase('memorize');
 
     timerRef.current = setTimeout(() => {
@@ -61,8 +63,6 @@ export const useGame = () => {
     setTotalRounds(rounds);
     setRound(1);
     setResults([]);
-    setShape(randomShape());
-    setColor(randomColor());
     startRound(1);
   };
 

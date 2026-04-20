@@ -8,5 +8,6 @@ export const Wrapper = styled('div')<{ hasGameStarted: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: ${({ theme }) => theme.palette.primary.main};
   transition: all 300ms ease;
 `;

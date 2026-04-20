@@ -129,7 +129,7 @@ const GamePanel = ({
                 <GameShape shape={shape} size={targetSize} color={color} variant="ring" />
                 <ResultLegend>
                   <LegendDot dashed>target</LegendDot>
-                  <LegendDot style={{ '--dot-color': isOvershot ? '#f87171' : color } as React.CSSProperties}>yours</LegendDot>
+                  <LegendDot style={{ '--dot-color': color } as React.CSSProperties}>yours</LegendDot>
                 </ResultLegend>
               </>
             );
@@ -221,7 +221,7 @@ const GamePanel = ({
             min={10}
             max={300}
             defaultValue={30}
-            sx={{ height: '90%', color: '#7c6af5' }}
+            sx={{ height: '90%' }}
             value={shapeSize}
             onChange={handleChangeShapeSize}
           />

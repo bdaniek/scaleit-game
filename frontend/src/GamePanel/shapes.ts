@@ -1,4 +1,4 @@
-export type ShapeType = 'circle' | 'square' | 'triangle' | 'hexagon' | 'pentagon' | 'diamond' | 'star';
+export type ShapeType = 'circle' | 'square' | 'triangle' | 'hexagon' | 'pentagon' | 'diamond';
 
 export const SHAPES: ShapeType[] = [
   'circle',
@@ -7,18 +7,21 @@ export const SHAPES: ShapeType[] = [
   'hexagon',
   'pentagon',
   'diamond',
-  'star',
 ];
 
 export const COLORS = [
-  '#7c6af5', // purple
-  '#e85d75', // coral pink
-  '#3bb87f', // emerald
-  '#f5a623', // amber
-  '#4a9eed', // sky blue
-  '#b45de8', // violet
-  '#e8735a', // terracotta
-  '#2dd4bf', // teal
+  '#4A1228', // deep burgundy
+  '#003153', // prussian blue
+  '#5C4B6E', // dusty purple
+  '#2E4A3F', // forest green
+  '#1A3A5C', // midnight blue
+  '#6B1F38', // dark wine
+  '#3D5447', // sage green
+  '#4A3260', // deep violet
+  '#1F3D2E', // dark jade
+  '#5C3B1E', // warm umber
+  '#2C4A5C', // slate teal
+  '#3D2845', // plum
 ];
 
 export function randomShape(): ShapeType {
@@ -62,18 +65,6 @@ export function getShapePoints(shape: ShapeType): string {
         const a = (2 * Math.PI / 5) * i - Math.PI / 2;
         return `${(cx + r * Math.cos(a)).toFixed(1)},${(cy + r * Math.sin(a)).toFixed(1)}`;
       }).join(' ');
-    }
-
-    case 'star': {
-      const cx = 50, cy = 50, outerR = 47, innerR = 20;
-      const pts: string[] = [];
-      for (let i = 0; i < 5; i++) {
-        const oa = (2 * Math.PI / 5) * i - Math.PI / 2;
-        const ia = oa + Math.PI / 5;
-        pts.push(`${(cx + outerR * Math.cos(oa)).toFixed(1)},${(cy + outerR * Math.sin(oa)).toFixed(1)}`);
-        pts.push(`${(cx + innerR * Math.cos(ia)).toFixed(1)},${(cy + innerR * Math.sin(ia)).toFixed(1)}`);
-      }
-      return pts.join(' ');
     }
 
     default:
