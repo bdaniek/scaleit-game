@@ -15,7 +15,7 @@ export const Wrapper = styled('div')<{ hasGameStarted: boolean }>`
   background: #f0eef8;
 `;
 
-export const SliderWrapper = styled('div')<{ isPlaying: boolean }>`
+export const SliderWrapper = styled('div')<{ isPlaying: boolean; hasGameStarted: boolean }>`
   width: 50px;
   height: 100%;
   display: flex;
@@ -30,6 +30,8 @@ export const SliderWrapper = styled('div')<{ isPlaying: boolean }>`
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   transition: all 300ms ease;
+  opacity: ${({ hasGameStarted }) => (hasGameStarted ? '1' : '0')};
+  pointer-events: ${({ hasGameStarted }) => (hasGameStarted ? 'auto' : 'none')};
 `;
 
 export const GameScreen = styled('div')`

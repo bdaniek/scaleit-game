@@ -9,13 +9,14 @@ import {
 interface GameModeProps {
   isDifficultyOpened: boolean;
   hasGameStarted: boolean;
+  instant?: boolean;
   onNormalStart: () => void;
   onDailyStart: () => void;
 }
 
-const GameMode = ({ isDifficultyOpened, hasGameStarted, onNormalStart, onDailyStart }: GameModeProps) => {
+const GameMode = ({ isDifficultyOpened, hasGameStarted, instant, onNormalStart, onDailyStart }: GameModeProps) => {
   return (
-    <Wrapper hasGameStarted={hasGameStarted} isOpened={isDifficultyOpened}>
+    <Wrapper hasGameStarted={hasGameStarted} isOpened={isDifficultyOpened} instant={instant}>
       <Title>Game mode</Title>
 
       <GameModeOption onClick={onNormalStart}>

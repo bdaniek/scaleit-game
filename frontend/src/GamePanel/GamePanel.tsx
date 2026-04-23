@@ -214,19 +214,21 @@ const GamePanel = ({
         </GameScreen>
       </Wrapper>
 
-      {hasGameStarted && (
-        <SliderWrapper isPlaying={['idle', 'countdown', 'memorize', 'finished'].includes(phase)}>
-          <Slider
-            orientation="vertical"
-            min={10}
-            max={300}
-            defaultValue={30}
-            sx={{ height: '90%' }}
-            value={shapeSize}
-            onChange={handleChangeShapeSize}
-          />
-        </SliderWrapper>
-      )}
+      <SliderWrapper
+        isPlaying={['idle', 'countdown', 'memorize', 'finished'].includes(phase)}
+        hasGameStarted={hasGameStarted}
+      >
+        <Slider
+          orientation="vertical"
+          min={20}
+          max={300}
+          defaultValue={30}
+          sx={{ height: '90%' }}
+          value={shapeSize}
+          onChange={handleChangeShapeSize}
+          disabled={phase === 'result'}
+        />
+      </SliderWrapper>
 
       {phase === 'recall' && <SubmitButton onClick={submitGuess}>Lock in</SubmitButton>}
 

@@ -3,6 +3,7 @@ import { styled } from '@mui/material';
 export const Wrapper = styled('div')<{
   isOpened: boolean;
   hasGameStarted: boolean;
+  instant?: boolean;
 }>`
   width: 300px;
   height: 100%;
@@ -10,17 +11,17 @@ export const Wrapper = styled('div')<{
   top: 0;
   border-radius: 10px;
   right: ${({ isOpened }) => (isOpened ? '-320px' : '0')};
-  transition:
-    right 300ms ease,
-    opacity 300ms ease 1100ms;
+  transition: ${({ instant }) => instant
+    ? 'right 300ms ease'
+    : 'right 300ms ease, opacity 300ms ease 1100ms'};
   z-index: 1;
   padding: 20px;
   flex-direction: column;
   gap: 16px;
   border: 1px solid #d9d4ef;
   display: flex;
-  opacity: ${({ hasGameStarted }) => (hasGameStarted ? '0' : '1')};
-  pointer-events: ${({ hasGameStarted }) => (hasGameStarted ? 'none' : 'auto')};
+  opacity: ${({ hasGameStarted, instant }) => (hasGameStarted || instant ? '0' : '1')};
+  pointer-events: ${({ hasGameStarted, instant }) => (hasGameStarted || instant ? 'none' : 'auto')};
 `;
 
 export const GameModeOption = styled('div')<{ isHard?: boolean }>`

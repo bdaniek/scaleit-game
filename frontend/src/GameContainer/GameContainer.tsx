@@ -121,7 +121,10 @@ const GameContainer = () => {
   // ── Daily overlay (loading / error / already-played) ─────────────────────
   const showDailyOverlay =
     mode === 'daily' &&
-    (dailyStatus === 'loading' || dailyStatus === 'error' || dailyStatus === 'already_played');
+    (dailyStatus === 'loading' ||
+      (dailyStatus === 'ready' && !hasGameStarted) ||
+      dailyStatus === 'error' ||
+      dailyStatus === 'already_played');
 
   return (
     <Wrapper isOpened={isDifficultyOpened} hasGameStarted={hasGameStarted || showDailyOverlay}>
@@ -136,6 +139,7 @@ const GameContainer = () => {
         onDailyStart={handleDailyStart}
         isDifficultyOpened={isDifficultyOpened}
         hasGameStarted={hasGameStarted || showDailyOverlay}
+        instant={mode === 'daily'}
       />
 
       {/* Daily-specific overlay states */}

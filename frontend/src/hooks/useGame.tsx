@@ -5,7 +5,7 @@ import type { ShapeType } from '../GamePanel/shapes';
 export const DEFAULT_ROUNDS = 5;
 export const MEMORIZE_DURATION = 2000;
 const RESULT_DURATION = 2000;
-const MIN_SIZE = 30;
+const MIN_SIZE = 20;
 const MAX_SIZE = 300;
 
 const randomSize = () => Math.floor(Math.random() * (MAX_SIZE - MIN_SIZE + 1)) + MIN_SIZE;
