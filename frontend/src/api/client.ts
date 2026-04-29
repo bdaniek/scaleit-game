@@ -33,10 +33,10 @@ export interface LeaderboardResponse {
 // ─── Player ID ───────────────────────────────────────────────────────────────
 
 export function getOrCreatePlayerId(): string {
-  let id = localStorage.getItem('scaleit_player_id');
+  let id = localStorage.getItem('Glimpse_player_id');
   if (!id) {
     id = crypto.randomUUID();
-    localStorage.setItem('scaleit_player_id', id);
+    localStorage.setItem('Glimpse_player_id', id);
   }
   return id;
 }
@@ -44,7 +44,9 @@ export function getOrCreatePlayerId(): string {
 // ─── API calls ───────────────────────────────────────────────────────────────
 
 export async function getDailyChallenge(playerId: string): Promise<DailyChallengeResponse> {
-  const res = await fetch(`${BASE_URL}/api/daily/challenge?playerId=${encodeURIComponent(playerId)}`);
+  const res = await fetch(
+    `${BASE_URL}/api/daily/challenge?playerId=${encodeURIComponent(playerId)}`,
+  );
   if (!res.ok) throw new Error('Failed to fetch daily challenge');
   return res.json();
 }

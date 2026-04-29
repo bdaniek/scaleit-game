@@ -4,7 +4,7 @@ export const Wrapper = styled('div')<{
   isOpened: boolean;
   hasGameStarted: boolean;
 }>`
-  height: ${({ hasGameStarted }) => (hasGameStarted ? '400px' : '300px')};
+  height: ${({ hasGameStarted }) => (hasGameStarted ? '400px' : '320px')};
   width: ${({ hasGameStarted }) => (hasGameStarted ? '500px' : '300px')};
   border-radius: 12px;
   position: relative;
@@ -12,7 +12,6 @@ export const Wrapper = styled('div')<{
   justify-content: center;
   align-items: center;
   font-family: 'DM Sans', sans-serif;
-  border: ${({ hasGameStarted }) => (hasGameStarted ? 'none' : '1px solid #d9d4ef')};
   transition:
     transform 300ms ease,
     width 500ms ease,

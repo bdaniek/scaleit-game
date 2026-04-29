@@ -1,9 +1,4 @@
-import { keyframes, styled } from '@mui/material';
-
-const fadeUp = keyframes`
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-`;
+import { styled } from '@mui/material';
 
 export const Wrapper = styled('div')<{
   isOpened: boolean;
@@ -19,18 +14,51 @@ export const Wrapper = styled('div')<{
   padding: 28px 24px;
   border-radius: 10px;
   font-family: 'DM Sans', sans-serif;
-  background: ${({ theme }) => theme.palette.primary.main};
+  background:
+    radial-gradient(circle at 12% 88%, rgba(255, 255, 255, 0.11) 0%, transparent 52%),
+    radial-gradient(circle at 88% 14%, rgba(255, 255, 255, 0.07) 0%, transparent 42%),
+    ${({ theme }) => theme.palette.primary.main};
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
   opacity: ${({ hasGameStarted }) => (hasGameStarted ? '0' : '1')};
   pointer-events: ${({ hasGameStarted }) => (hasGameStarted ? 'none' : 'auto')};
   transition:
     opacity 200ms ease ${({ hasGameStarted }) => (!hasGameStarted ? '1000ms' : '0ms')};
 `;
 
+export const Decorations = styled('div')`
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 72px;
+    right: 22px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.14);
+  }
+`;
+
 export const TopSection = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 6px;
-  animation: ${fadeUp} 400ms ease both;
 `;
 
 export const GameTitle = styled('div')`
@@ -41,9 +69,9 @@ export const GameTitle = styled('div')`
 `;
 
 export const GameTagline = styled('div')`
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.01em;
 `;
 
@@ -60,7 +88,6 @@ export const RulesList = styled('div')`
   flex-direction: column;
   gap: 10px;
   flex: 1;
-  animation: ${fadeUp} 400ms ease 80ms both;
 `;
 
 export const RuleItem = styled('div')`
@@ -71,12 +98,12 @@ export const RuleItem = styled('div')`
 
 export const RuleNumber = styled('span')`
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-  font-size: 11px;
+  color: #ccc;
+  font-size: 12px;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -85,8 +112,8 @@ export const RuleNumber = styled('span')`
 `;
 
 export const RuleText = styled('span')`
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.5;
 `;
 
@@ -108,8 +135,6 @@ export const PlayButton = styled('button')`
   justify-content: center;
   gap: 6px;
   transition: all 180ms ease;
-  animation: ${fadeUp} 400ms ease 160ms both;
-
   &:hover {
     background: #f0eef8;
     transform: translateY(-1px);

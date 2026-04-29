@@ -41,7 +41,7 @@ const RingWrap = styled('div')<{ $size: number }>`
   height: ${({ $size }) => $size}px;
   pointer-events: none;
   z-index: 2;
-  filter: drop-shadow(0 0 3px rgba(78, 72, 128, 0.6));
+  filter: drop-shadow(0 0 6px rgba(45, 27, 110, 0.5));
   animation: ${fadeIn} 250ms ease both;
 `;
 
@@ -61,9 +61,9 @@ const ShapeSvg = ({ shape, color, variant }: ShapeSvgProps) => {
   const fill = variant === 'ring' ? 'none' : color;
 
   const fillOpacity = variant === 'guess' ? 0.75 : 1;
-  const stroke = variant === 'ring' ? 'rgba(255,255,255,0.9)' : 'none';
-  const strokeWidth = variant === 'ring' ? 2.5 : 0;
-  const strokeDasharray = variant === 'ring' ? '8 5' : undefined;
+  const stroke = variant === 'ring' ? 'rgba(199,199,199,0.9)' : 'none';
+  const strokeWidth = variant === 'ring' ? 4 : 0;
+  const strokeDasharray = variant === 'ring' ? '7 4' : undefined;
   const vectorEffect = variant === 'ring' ? 'non-scaling-stroke' : undefined;
 
   return (
@@ -109,7 +109,7 @@ const GameShape = ({ shape, size, color, variant, isOvershot }: GameShapeProps) 
   const svg = <ShapeSvg shape={shape} color={color} variant={variant} isOvershot={isOvershot} />;
 
   if (variant === 'bubble') return <BubbleWrap $size={size}>{svg}</BubbleWrap>;
-  if (variant === 'guess')  return <GuessWrap  $size={size}>{svg}</GuessWrap>;
+  if (variant === 'guess') return <GuessWrap $size={size}>{svg}</GuessWrap>;
   return <RingWrap $size={size}>{svg}</RingWrap>;
 };
 
