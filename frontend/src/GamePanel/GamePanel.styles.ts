@@ -34,18 +34,18 @@ export const SliderWrapper = styled('div')<{ isPlaying: boolean; hasGameStarted:
   pointer-events: ${({ hasGameStarted }) => (hasGameStarted ? 'auto' : 'none')};
 `;
 
-export const GameScreen = styled('div')`
+export const GameScreen = styled('div')<{ isSliderVisible: boolean }>`
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: calc(100% - 50px);
+  width: ${({ isSliderVisible }) => (isSliderVisible ? 'calc(100% - 50px)' : '100%')};
   border: 1px solid #d9d4ef;
-  border-bottom-left-radius: 12px;
-  border-top-left-radius: 12px;
+  border-radius: ${({ isSliderVisible }) => (!isSliderVisible ? '12px 0 0 12px' : '12px')};
   overflow: hidden;
   position: relative;
+  transition: width 300ms ease, border-radius 300ms ease;
 `;
 
 // ─── Result phase overlays ────────────────────────────────────────────────────
@@ -122,12 +122,13 @@ export const SubmitButton = styled('div')`
   position: absolute;
   width: 180px;
   height: 40px;
-  bottom: -40px;
+  bottom: -39px;
+   z-index: 99;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   border: 1px solid ${({ theme }) => theme.palette.primary.main};
   color: ${({ theme }) => theme.palette.primary.main};
   cursor: pointer;

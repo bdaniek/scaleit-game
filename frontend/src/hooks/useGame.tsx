@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { randomShape, randomColor } from '../GamePanel/shapes';
+import { randomShape, randomColor, COLORS } from '../GamePanel/shapes';
 import type { ShapeType } from '../GamePanel/shapes';
 
 export const DEFAULT_ROUNDS = 5;
@@ -26,7 +26,7 @@ export const useGame = () => {
   const [shapeSize, setShapeSize] = useState(100);
   const [results, setResults] = useState<RoundResult[]>([]);
   const [shape, setShape] = useState<ShapeType>(randomShape);
-  const [color, setColor] = useState(randomColor);
+  const [color, setColor] = useState(COLORS[0]);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Targets for the current game session (undefined = use random)

@@ -1,9 +1,4 @@
-import { keyframes, styled } from '@mui/material';
-
-const fadeUp = keyframes`
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-`;
+import { styled } from '@mui/material';
 
 export const Wrapper = styled('div')<{
   isOpened: boolean;
@@ -30,7 +25,6 @@ export const TopSection = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 6px;
-  animation: ${fadeUp} 400ms ease both;
 `;
 
 export const GameTitle = styled('div')`
@@ -41,7 +35,7 @@ export const GameTitle = styled('div')`
 `;
 
 export const GameTagline = styled('div')`
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.65);
   letter-spacing: 0.01em;
@@ -60,7 +54,6 @@ export const RulesList = styled('div')`
   flex-direction: column;
   gap: 10px;
   flex: 1;
-  animation: ${fadeUp} 400ms ease 80ms both;
 `;
 
 export const RuleItem = styled('div')`
@@ -71,12 +64,12 @@ export const RuleItem = styled('div')`
 
 export const RuleNumber = styled('span')`
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-  font-size: 11px;
+  color: #ccc;
+  font-size: 12px;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -85,7 +78,7 @@ export const RuleNumber = styled('span')`
 `;
 
 export const RuleText = styled('span')`
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.5;
 `;
@@ -108,8 +101,6 @@ export const PlayButton = styled('button')`
   justify-content: center;
   gap: 6px;
   transition: all 180ms ease;
-  animation: ${fadeUp} 400ms ease 160ms both;
-
   &:hover {
     background: #f0eef8;
     transform: translateY(-1px);

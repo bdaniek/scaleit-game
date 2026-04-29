@@ -1,16 +1,17 @@
 import {
-  Wrapper,
-  TopSection,
-  GameTitle,
-  GameTagline,
   Divider,
-  RulesList,
+  GameTagline,
+  GameTitle,
+  PlayButton,
   RuleItem,
   RuleNumber,
+  RulesList,
   RuleText,
-  PlayButton,
+  TopSection,
+  Wrapper,
 } from '@/GameMenu/GameMenu.styles.ts';
 import EastIcon from '@mui/icons-material/East';
+import AnimatedContent from '@/AnimatedContent';
 
 interface MenuProps {
   isOpened: boolean;
@@ -26,29 +27,56 @@ const rules = [
 
 const GameMenu = ({ isOpened, handleOpen, hasGameStarted }: MenuProps) => {
   return (
-    <Wrapper hasGameStarted={hasGameStarted} isOpened={isOpened}>
-      <div>
-        <TopSection>
-          <GameTitle>ScaleIt</GameTitle>
-          <GameTagline>how well do you remember size?</GameTagline>
-        </TopSection>
+    <AnimatedContent
+      distance={100}
+      direction="vertical"
+      reverse={false}
+      duration={1.5}
+      ease="elastic.out(1, 0.3)"
+      initialOpacity={0}
+      animateOpacity
+      scale={0.6}
+      threshold={0.2}
+      delay={0}
+      style={{ height: '100%', position: 'relative', zIndex: 99 }}
+    >
+      <Wrapper hasGameStarted={hasGameStarted} isOpened={isOpened}>
+        <div>
+          <TopSection>
+            <GameTitle>ScaleIt</GameTitle>
+            <GameTagline>how well do you remember size?</GameTagline>
+          </TopSection>
 
-        <Divider />
+          <Divider />
 
-        <RulesList>
-          {rules.map((rule, i) => (
-            <RuleItem key={i}>
-              <RuleNumber>{i + 1}</RuleNumber>
-              <RuleText>{rule}</RuleText>
-            </RuleItem>
-          ))}
-        </RulesList>
-      </div>
+          <RulesList>
+            {rules.map((rule, i) => (
+              <RuleItem key={i}>
+                <RuleNumber>{i + 1}</RuleNumber>
+                <RuleText>{rule}</RuleText>
+              </RuleItem>
+            ))}
+          </RulesList>
+        </div>
 
-      <PlayButton onClick={handleOpen}>
-        pick a mode <EastIcon style={{ fontSize: 16 }} />
-      </PlayButton>
-    </Wrapper>
+        <AnimatedContent
+          distance={100}
+          direction="vertical"
+          reverse={false}
+          duration={1.5}
+          ease="elastic.out(1, 0.3)"
+          initialOpacity={0}
+          animateOpacity
+          scale={0.6}
+          threshold={0.2}
+          delay={0.3}
+        >
+          <PlayButton onClick={handleOpen}>
+            pick a mode <EastIcon style={{ fontSize: 16 }} />
+          </PlayButton>
+        </AnimatedContent>
+      </Wrapper>
+    </AnimatedContent>
   );
 };
 

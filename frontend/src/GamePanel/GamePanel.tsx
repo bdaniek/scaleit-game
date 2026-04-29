@@ -108,7 +108,7 @@ const GamePanel = ({
   return (
     <>
       <Wrapper hasGameStarted={hasGameStarted}>
-        <GameScreen>
+        <GameScreen isSliderVisible={['idle', 'countdown', 'memorize', 'finished'].includes(phase)}>
           {countdown && phase === 'countdown' && <Countdown key={countdown}>{countdown}</Countdown>}
 
           {phase === 'memorize' && (

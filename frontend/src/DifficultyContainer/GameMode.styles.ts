@@ -14,7 +14,7 @@ export const Wrapper = styled('div')<{
   transition: ${({ instant }) => instant
     ? 'right 300ms ease'
     : 'right 300ms ease, opacity 300ms ease 1100ms'};
-  z-index: 1;
+  z-index: 0;
   padding: 20px;
   flex-direction: column;
   gap: 16px;
@@ -49,16 +49,16 @@ export const GameModeName = styled('span')<{ isHard?: boolean }>`
 `;
 
 export const GameModeDesc = styled('span')`
-  font-size: 12px;
-  font-weight: 300;
-  color: #9b96c0;
-  margin-top: 2px;
-  display: block;
+   font-size: 13px;
+   font-weight: 400;
+   color: #837eb6;
+   margin-top: 2px;
+   display: block;
 `;
 
 export const Title = styled('div')`
-  color: #9b96c0;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 500;
+   color: #7c74cc;
+   text-transform: uppercase;
+   font-size: 13px;
+   font-weight: 500;
 `;

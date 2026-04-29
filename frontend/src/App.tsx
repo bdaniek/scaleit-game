@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme, lighten } from '@mui/material/styles';
 import { createGlobalStyle } from 'styled-components';
@@ -9,7 +9,7 @@ import { randomColor } from '@/GamePanel/shapes';
 
 function App() {
   const [themeColor, setThemeColor] = useState(randomColor);
-
+  
   const theme = useMemo(
     () =>
       createTheme({

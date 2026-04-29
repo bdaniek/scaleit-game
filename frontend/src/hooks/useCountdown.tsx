@@ -65,7 +65,7 @@ export const useCountdown = ({
 
             return prev - 1;
           });
-        }, 1000);
+        }, 900);
 
         return () => clearInterval(interval);
       }

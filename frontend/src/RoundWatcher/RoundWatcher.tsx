@@ -1,5 +1,6 @@
 import { Wrapper } from '@/RoundWatcher/RoundWatcher.styles.ts';
 import CircleIcon from '@mui/icons-material/Circle';
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import AdjustIcon from '@mui/icons-material/Adjust';
 
 interface RoundWatcherProps {
@@ -14,7 +15,7 @@ const RoundWatcher = ({ round, totalRounds, hasGameStarted }: RoundWatcherProps)
   return (
     <Wrapper hasGameStarted={hasGameStarted}>
       {roundArr.map((number, key) =>
-        number === round ? <CircleIcon key={key} /> : <AdjustIcon key={key} />,
+        number === round ? <CircleIcon key={key} /> : number > round ? <CircleOutlinedIcon key={key} /> : <AdjustIcon key={key} />,
       )}
     </Wrapper>
   );
