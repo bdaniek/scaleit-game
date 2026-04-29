@@ -1,10 +1,12 @@
-import { Title, Wrapper, Content } from '@/Layout/Layout.styles.ts';
+import { Content, Title, Wrapper } from '@/Layout/Layout.styles.ts';
 import type { ReactNode } from 'react';
+import DotGrid from '@/DotGrid';
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <Wrapper>
-      <Title>ScaleIt</Title>
+      <DotGrid />
+      <Title>Glimpse</Title>
       <Content>{children}</Content>
     </Wrapper>
   );

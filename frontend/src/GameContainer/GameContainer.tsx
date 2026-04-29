@@ -25,6 +25,7 @@ const GameContainer = () => {
     shapeSize,
     shape,
     color,
+    shapeColor,
     results,
     setShapeSize,
     startGame,
@@ -208,7 +209,7 @@ const GameContainer = () => {
         results={results}
         handleFinishGame={handlePlayAgain}
         shape={shape}
-        color={color}
+        color={shapeColor}
         isDaily={mode === 'daily'}
         dailyStatus={dailyStatus}
         submitResult={submitResult}

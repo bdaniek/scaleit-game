@@ -1,4 +1,5 @@
 import {
+  Decorations,
   Divider,
   GameTagline,
   GameTitle,
@@ -41,9 +42,10 @@ const GameMenu = ({ isOpened, handleOpen, hasGameStarted }: MenuProps) => {
       style={{ height: '100%', position: 'relative', zIndex: 99 }}
     >
       <Wrapper hasGameStarted={hasGameStarted} isOpened={isOpened}>
+        <Decorations />
         <div>
           <TopSection>
-            <GameTitle>ScaleIt</GameTitle>
+            <GameTitle>Glimpse</GameTitle>
             <GameTagline>how well do you remember size?</GameTagline>
           </TopSection>
 

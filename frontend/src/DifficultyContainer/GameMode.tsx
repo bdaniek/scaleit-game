@@ -1,4 +1,4 @@
-import { GameModeDesc, GameModeName, GameModeOption, Title, Wrapper, } from '@/DifficultyContainer/GameMode.styles.ts';
+import { Decorations, GameModeDesc, GameModeName, GameModeOption, Title, Wrapper, } from '@/DifficultyContainer/GameMode.styles.ts';
 import AnimatedContent from '@/AnimatedContent';
 
 interface GameModeProps {
@@ -26,6 +26,7 @@ const GameMode = ({ isDifficultyOpened, hasGameStarted, instant, onNormalStart, 
       style={{ position: 'absolute', top: 0, right: 0, width: '300px', height: '100%' }}
     >
       <Wrapper hasGameStarted={hasGameStarted} isOpened={isDifficultyOpened} instant={instant}>
+        <Decorations />
         <Title>Game mode</Title>
 
         <GameModeOption onClick={onNormalStart}>

@@ -10,7 +10,7 @@ export const SHAPES: ShapeType[] = [
 ];
 
 export const COLORS = [
-  '#4A1228', // deep burgundy
+  '#2D1B6E', // deep indigo
   '#003153', // prussian blue
   '#5C4B6E', // dusty purple
   '#2E4A3F', // forest green

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { randomShape, randomColor, COLORS } from '../GamePanel/shapes';
+import { randomShape, COLORS } from '../GamePanel/shapes';
 import type { ShapeType } from '../GamePanel/shapes';
 
 export const DEFAULT_ROUNDS = 5;
@@ -9,6 +9,18 @@ const MIN_SIZE = 20;
 const MAX_SIZE = 300;
 
 const randomSize = () => Math.floor(Math.random() * (MAX_SIZE - MIN_SIZE + 1)) + MIN_SIZE;
+
+const MIN_SIZE_DIFF = 70; // consecutive targets must differ by at least this many px
+
+const randomSizeFarFrom = (previous: number): number => {
+  let candidate: number;
+  let attempts = 0;
+  do {
+    candidate = randomSize();
+    attempts++;
+  } while (Math.abs(candidate - previous) < MIN_SIZE_DIFF && attempts < 20);
+  return candidate;
+};
 
 export type Phase = 'idle' | 'countdown' | 'memorize' | 'recall' | 'result' | 'finished';
 
@@ -26,11 +38,20 @@ export const useGame = () => {
   const [shapeSize, setShapeSize] = useState(100);
   const [results, setResults] = useState<RoundResult[]>([]);
   const [shape, setShape] = useState<ShapeType>(randomShape);
-  const [color, setColor] = useState(COLORS[0]);
+  const [color] = useState(COLORS[0]);
+  const [shapeColor, setShapeColor] = useState(COLORS[0]);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevTargetRef = useRef<number>(0);
 
   // Targets for the current game session (undefined = use random)
   const sessionTargetsRef = useRef<number[] | undefined>(undefined);
+
+  // Shuffled color pool — each color appears exactly once per game
+  const colorPoolRef = useRef<string[]>([]);
+
+  const refillColorPool = () => {
+    colorPoolRef.current = [...COLORS].sort(() => Math.random() - 0.5);
+  };
 
   const clearTimer = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -39,11 +60,12 @@ export const useGame = () => {
   const startRound = (roundNumber: number) => {
     const size = sessionTargetsRef.current
       ? sessionTargetsRef.current[roundNumber - 1]
-      : randomSize();
+      : randomSizeFarFrom(prevTargetRef.current);
+    prevTargetRef.current = size;
     setTargetSize(size);
     setShapeSize(randomSize());
     setShape(randomShape());
-    setColor(randomColor());
+    setShapeColor(colorPoolRef.current.pop() ?? COLORS[0]);
     setPhase('memorize');
 
     timerRef.current = setTimeout(() => {
@@ -63,6 +85,8 @@ export const useGame = () => {
     setTotalRounds(rounds);
     setRound(1);
     setResults([]);
+    refillColorPool();
+    prevTargetRef.current = 0;
     startRound(1);
   };
 
@@ -107,6 +131,7 @@ export const useGame = () => {
     shapeSize,
     shape,
     color,
+    shapeColor,
     results,
     setShapeSize,
     startGame,
