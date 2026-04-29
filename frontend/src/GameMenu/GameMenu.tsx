@@ -39,7 +39,7 @@ const GameMenu = ({ isOpened, handleOpen, hasGameStarted }: MenuProps) => {
       scale={0.6}
       threshold={0.2}
       delay={0}
-      style={{ height: '100%', position: 'relative', zIndex: 99 }}
+      style={{ height: '100%', position: 'relative', zIndex: 98 }}
     >
       <Wrapper hasGameStarted={hasGameStarted} isOpened={isOpened}>
         <Decorations />
